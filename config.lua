@@ -12,7 +12,7 @@ Config.Items = {
 		remove = true
 	},
 	
-	["suggarydrink"] = {
+	["sugarydrink"] = {
 		type = "drink",
 		prop = "prop_orang_can_01",
 		status = 120000,
