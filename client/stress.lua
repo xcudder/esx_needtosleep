@@ -6,6 +6,11 @@ local StoredIsPedSprinting 							= false
 local StoredIsAnyHostilePedNearPoint 				= false
 local StoredIsPedInsideStolenCar					= false
 
+RegisterNetEvent('esx_needtosleep:cigaretteUsed')
+AddEventHandler('esx_needtosleep:cigaretteUsed', function()
+	TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_SMOKING", 0, true)
+end)
+
 RegisterNetEvent('esx_status:loaded')
 AddEventHandler('esx_status:loaded', function(status)
 	TriggerEvent('esx_status:registerStatus', 'stress', 0, '#FF0000', function(status)
