@@ -12,9 +12,8 @@ RegisterCommand("sleep", function(source, a)
 		Wait(1000)
 		wait_time = wait_time - 1000
 		ESX.ShowNotification("Sleeping... " .. (wait_time / 1000))
-		
-		-- This is breaking... idk y yet...
-		TriggerEvent("esx_status:remove", source, 'sleepiness', 1215.3)
+
+		TriggerEvent("esx_status:remove", 'sleepiness', 1215.3)
 
 		sleeping = (wait_time > 0)
 	end
