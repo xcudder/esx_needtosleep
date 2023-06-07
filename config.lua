@@ -1,21 +1,23 @@
 Config = {}
 
-Config.Max = 5760
-
-Config.Min = 0
+Config.Debug = false
 
 Config.Items = {
 	["junkfood"] = {
 		type = "food",
-		prop= "prop_donut_01",
-		status = 120000,
+		prop = "prop_donut_01",
 		remove = true
 	},
 	
 	["sugarydrink"] = {
 		type = "drink",
 		prop = "prop_orang_can_01",
-		status = 120000,
+		remove = true
+	},
+	
+	["coffee"] = {
+		type = "drink",
+		prop = "p_amb_coffeecup_01",
 		remove = true
 	}
 }

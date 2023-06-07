@@ -14,7 +14,8 @@ server_scripts {
 
 client_scripts {
 	'config.lua',
-	'client/main.lua',
+	'client/sleep.lua',
+	'client/stress.lua',
 	'client/commands.lua'
 }
 

@@ -5,14 +5,20 @@ CreateThread(function()
 			if v.remove then
 				xPlayer.removeInventoryItem(k,1)
 			end
-			if v.type == "food" then
-				TriggerClientEvent("esx_status:add", source, "hunger", v.status)
-				TriggerClientEvent("esx_status:add", source, "sleepiness", v.status) -- detrimental add
-				TriggerClientEvent('esx_basicneeds:onUse', source, v.type)
-			elseif v.type == "drink" then
-				TriggerClientEvent("esx_status:add", source, "thirst", v.status)
-				TriggerClientEvent("esx_status:add", source, "sleepiness", v.status) -- detrimental add
-				TriggerClientEvent('esx_basicneeds:onUse', source, v.type)
+			if k == "junkfood" then
+				TriggerClientEvent("esx_status:add", source, "hunger", 80000)
+				TriggerClientEvent("esx_status:add", source, "sleepiness", 100000) -- detrimental add
+				TriggerClientEvent("esx_status:remove", source, "stress", 30000) -- benign remove
+				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
+			elseif k == "suggarydrink" then
+				TriggerClientEvent("esx_status:add", source, "thirst", 80000)
+				TriggerClientEvent("esx_status:add", source, "sleepiness", 100000) -- detrimental add
+				TriggerClientEvent("esx_status:remove", source, "stress", 30000) -- benign remove
+				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
+			elseif k == "coffee" then
+				TriggerClientEvent("esx_status:add", source, "stress", 20000) -- detrimental add
+				TriggerClientEvent("esx_status:remove", source, "sleepiness", 50000) -- benign remove
+				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
 			else
 				print(string.format('^1[ERROR]^0 %s has no correct type defined.', k))
 			end
