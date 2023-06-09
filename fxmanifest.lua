@@ -16,7 +16,7 @@ client_scripts {
 	'config.lua',
 	'client/sleep.lua',
 	'client/stress.lua',
-	'client/commands.lua'
+	'client/sleep_command.lua'
 }
 
 dependencies {

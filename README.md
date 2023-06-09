@@ -10,5 +10,8 @@ INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 	('sugarydrink', 'Sugary Drink', 1),
 	('coffee', 'Coffee', 1)
 ;
+
+INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES ('blanket', 'Blanket', '1', '0', '0');
 ```
+
 inside esx_needtosleep.sql
