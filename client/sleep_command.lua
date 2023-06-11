@@ -58,7 +58,7 @@ end)
 
 -- Silly logic abstractions
 function createCommunePeds()
-	ClearAreaOfPeds(154.17, -1002.8, -100.0, 5)
+	ClearAreaOfPeds(154.17, -1002.8, -100.0, 5.0)
 	createSingleCommunePed(0x4705974A, vector3(154.90, -1002.50, -100.50), "PROP_HUMAN_SEAT_CHAIR", 110.0)
 	createSingleCommunePed(0x6A8F1F9B, vector3(152.36, -1000.14, -100.0), "WORLD_HUMAN_MUSCLE_FLEX", 0.0)
 	createSingleCommunePed(0x48F96F5B, vector3(154.36, -1004.50, -99.42), "WORLD_HUMAN_BUM_SLUMPED", 80.0)
