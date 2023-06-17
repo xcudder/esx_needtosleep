@@ -5,6 +5,7 @@ local StoredIsPedRunning 							= false
 local StoredIsPedSprinting 							= false
 local StoredIsAnyHostilePedNearPoint 				= false
 local StoredIsPedInsideStolenCar					= false
+local StoredIsPedOutInTheRain						= false
 
 RegisterNetEvent('esx_needtosleep:cigaretteUsed')
 AddEventHandler('esx_needtosleep:cigaretteUsed', function()
@@ -48,6 +49,11 @@ AddEventHandler('esx_status:loaded', function(status)
 			TriggerEvent("esx_status:add", 'stress', 1000)
 			StoredIsPedInsideStolenCar = false
 		end
+		if StoredIsPedOutInTheRain then
+			if(Config.debug == true) then ESX.ShowNotification("StoredIsPedOutInTheRain") end
+			TriggerEvent("esx_status:add", 'stress', 1000)
+			StoredIsPedOutInTheRain = false
+		end
 	end)
 end)
 
@@ -75,6 +81,8 @@ Citizen.CreateThread(function()
 		if(IsPedBeingJacked(ped) and not StoredIsPedBeingJacked) then StoredIsPedBeingJacked = true end
 
 		if(IsPedInsideStolenCar(ped) and not StoredIsPedInsideStolenCar) then StoredIsPedInsideStolenCar = true end
+
+		if(IsPedOutInTheRain(ped) and not StoredIsPedOutInTheRain) then StoredIsPedOutInTheRain = true end
 	end
 end)
 
@@ -96,4 +104,8 @@ end
 
 function IsPedInsideStolenCar(ped)
 	return IsVehicleStolen(GetVehiclePedIsEntering(ped)) or IsVehicleStolen(GetVehiclePedIsIn(ped))
+end
+
+function IsPedOutInTheRain(ped)
+	GetInteriorFromEntity(ped) == 0 and not IsPedInAnyVehicle(ped, false) and not IsPedInAnyPlane(ped) and not IsPedInAnyHeli(ped) and GetRainLevel() > 0.0
 end
