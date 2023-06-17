@@ -1,11 +1,13 @@
 local isInProperty = false
 local sleeping = false
+local wakeup_imminent = false
 local xPlayer = false
 local hasBlanket = false
 local restQuality = 1
 local isInPaletoComune = false
 local ov3 = vector3(-102.1, 6345.04, 31.58)
 local iv3 = vector3(151.41, -1007.96, -99.0)
+createdCommunePeds = false
 
 -- Hooks and callbacks
 RegisterNetEvent('esx_needtosleep:enteredProperty')
@@ -20,6 +22,10 @@ end)
 
 RegisterCommand("sleep", function(source, args)
 	sleepCommand(source, args)
+end)
+
+RegisterCommand("wakeup", function(source, args)
+	wakeup(source, args)
 end)
 
 
@@ -58,7 +64,7 @@ end)
 
 -- Silly logic abstractions
 function createCommunePeds()
-	ClearAreaOfPeds(154.17, -1002.8, -100.0, 5.0)
+	if createdCommunePeds then return end
 	createSingleCommunePed(0x4705974A, vector3(154.90, -1002.50, -100.50), "PROP_HUMAN_SEAT_CHAIR", 110.0)
 	createSingleCommunePed(0x6A8F1F9B, vector3(152.36, -1000.14, -100.0), "WORLD_HUMAN_MUSCLE_FLEX", 0.0)
 	createSingleCommunePed(0x48F96F5B, vector3(154.36, -1004.50, -99.42), "WORLD_HUMAN_BUM_SLUMPED", 80.0)
@@ -66,6 +72,7 @@ function createCommunePeds()
 	createSingleCommunePed(0x174D4245, vector3(153.56, -1007.63, -100.50), "PROP_HUMAN_SEAT_CHAIR", 0.0)
 	createSingleCommunePed(0x8CA0C266, vector3(150.65, -1006.45, -100.0), "WORLD_HUMAN_LEANING", 240.0)
 	createSingleCommunePed(0x53B57EB0, vector3(153.44, -1005.26, -100.50), "PROP_HUMAN_SEAT_CHAIR", 80.0)
+	createdCommunePeds = true
 end
 
 function createSingleCommunePed(hash, v3, ped_scenario, heading)
@@ -97,7 +104,9 @@ function sleepCommand(source, args)
 	local sleep_for = args[1] or 16 -- IRL Minutes
 	local wait_time = sleep_for * 2 * 60 * 1000 
 
-	DoScreenFadeOut(1000)
+	TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_SUNBATHE_BACK", 0, true)
+	Wait(1000)
+	FreezeEntityPosition(PlayerPedId(), true)
 
 	while sleeping do
 		Wait(1000)
@@ -108,9 +117,20 @@ function sleepCommand(source, args)
 		TriggerEvent("esx_status:remove", 'stress', (1215.3 * restQuality))
 
 		sleeping = (wait_time > 0)
+
+		if wakeup_imminent then
+			sleeping = false
+			wakeup_imminent = false
+		end
 	end
 
-	DoScreenFadeIn(1000)
+	wakeup()
+end
+
+function wakeup(source, args)
+	wakeup_imminent = true
+	FreezeEntityPosition(PlayerPedId(), false)
+	ClearPedTasksImmediately(PlayerPedId())
 end
 
 function canSleep()
