@@ -107,5 +107,5 @@ function IsPedInsideStolenCar(ped)
 end
 
 function IsPedOutInTheRain(ped)
-	GetInteriorFromEntity(ped) == 0 and not IsPedInAnyVehicle(ped, false) and not IsPedInAnyPlane(ped) and not IsPedInAnyHeli(ped) and GetRainLevel() > 0.0
+	return (GetInteriorFromEntity(ped) == 0) and not IsPedInAnyVehicle(ped, false) and not IsPedInAnyPlane(ped) and not IsPedInAnyHeli(ped) and (GetRainLevel() > 0.0)
 end
