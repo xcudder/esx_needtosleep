@@ -95,6 +95,7 @@ function createSingleCommunePed(hash, v3, ped_scenario, heading)
 end
 
 function sleepCommand(source, args)
+	wakeup_imminent = false
 	-- 8 in game hours (16 IRL minutes) should have you all rested, this takes into account
 	-- the esx status tick that would be adding sleep even now... that should probably
 	-- be fixed with some is_sleeping status or something... oh well
