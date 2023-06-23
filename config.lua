@@ -33,3 +33,10 @@ Config.Items = {
 		remove = true
 	}
 }
+
+-- This is based on a 48min GTA day (default)
+-- and 1000 tick time and 1000000 max status
+-- on esx_status
+Config.tickSleep = 185.18
+Config.sleepRecoveryOnTick = 555.55 + 185.18
+Config.stressRecoveryOnTick = 185.18

@@ -36,14 +36,16 @@ end)
 
 function goToSleep(source, args)
 	wakeup_imminent = false
-	-- 8 in game hours (16 IRL minutes) should have you all rested, this takes into account
+	-- 8 in game hours should have you all rested, this takes into account
 	-- the esx status tick that would be adding sleep even now... that should probably
 	-- be fixed with some is_sleeping status or something... oh well
 	if not canSleep() then return end
 
 	sleeping = true
-	local sleep_for = args[1] or 16 -- IRL Minutes
-	local wait_time = sleep_for * 2 * 60 * 1000 
+	local sleep_for = args[1] or 16 -- default sleep time, 16 IRL Minutes
+	local wait_time = sleep_for * 60 * 1000
+	local current_percentage = false
+	local sleepMultiplier = 1
 
 	TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_SUNBATHE_BACK", 0, true)
 	Wait(1000)
@@ -51,11 +53,17 @@ function goToSleep(source, args)
 
 	while sleeping do
 		Wait(1000)
+		sleepMultiplier = 1
 		wait_time = wait_time - 1000
 		ESX.ShowNotification("Sleeping... " .. (wait_time / 1000))
 
-		TriggerEvent("esx_status:remove", 'sleepiness', (1215.3 * restQuality))
-		TriggerEvent("esx_status:remove", 'stress', (1215.3 * restQuality))
+		TriggerEvent('esx_status:getStatus', 'sleepiness', function(status) current_percentage = status.getPercent() end)
+		while not current_percentage do Wait(100) end
+
+		if current_percentage > 40 then sleep_multiplier = 2 end
+
+		TriggerEvent("esx_status:remove", 'sleepiness', (Config.sleepRecoveryOnTick * sleepMultiplier * restQuality))
+		TriggerEvent("esx_status:remove", 'stress', (Config.stressRecoveryOnTick * sleepMultiplier * restQuality))
 
 		sleeping = (wait_time > 0)
 
