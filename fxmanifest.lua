@@ -14,9 +14,11 @@ server_scripts {
 
 client_scripts {
 	'config.lua',
-	'client/sleep.lua',
-	'client/stress.lua',
-	'client/sleep_command.lua'
+	'client/functions.lua',
+	'client/sleepiness_logic.lua',
+	'client/stress_logic.lua',
+	'client/sleep_command.lua',
+	'client/commune.lua',
 }
 
 dependencies {
