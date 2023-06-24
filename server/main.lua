@@ -1,7 +1,9 @@
+RegisterNetEvent("esx_property:enter")
 AddEventHandler("esx_property:enter", function()
 	TriggerClientEvent("esx_needtosleep:enteredProperty")
 end)
 
+RegisterNetEvent("esx_property:leave")
 AddEventHandler("esx_property:leave", function()
 	TriggerClientEvent("esx_needtosleep:leftProperty")
 end)

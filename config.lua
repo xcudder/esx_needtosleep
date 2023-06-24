@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Debug = false
+Config.debug = false
 
 Config.Items = {
 	["junkfood"] = {
