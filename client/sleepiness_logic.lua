@@ -10,7 +10,7 @@ AddEventHandler('esx_status:loaded', function(status)
 		return true
 	end, function(status)
 		if(status.getPercent() >= 95) then				--pass out and sleep a little
-			status.remove(100000)
+			status.remove(200000)
 			SetEntityHealth(PlayerPedId(), 0)
 		elseif(status.getPercent() > 90) then
 			SetCamEffect(2)								--distorted vision
@@ -19,28 +19,28 @@ AddEventHandler('esx_status:loaded', function(status)
 			SetCamEffect(1)								--distorted vision
 			setImpairedMovement(3)						--worst drunken movemnet
 		elseif(status.getPercent() > 70) then
-			SetCamEffect(0)
+			SetCamEffect(1)
 			setImpairedMovement(3)						--worst drunken movemnet
 		elseif(status.getPercent() > 60) then
-			SetCamEffect(0)
+			SetCamEffect(1)
 			setImpairedMovement(3)						--worst drunken movement
 		elseif(status.getPercent() > 55) then
-			SetCamEffect(0)
+			SetCamEffect(1)
 			setImpairedMovement(2)						--drunken movement worsens
 		elseif(status.getPercent() > 50) then
-			SetCamEffect(0)
+			SetCamEffect(1)
 			setImpairedMovement(1) 						--drunken movement
 		elseif(status.getPercent() > 40) then
-			SetCamEffect(0)
+			SetCamEffect(1)
 			ResetPedMovementClipset(PlayerPedId(), 0)
 		elseif(status.getPercent() <= 40) then 			--clean up ailments
 			SetCamEffect(0)
 			ResetPedMovementClipset(PlayerPedId(), 0)
 		end
 
-		noRunning 		= (status.getPercent() > 80)
-		noStamina 		= (status.getPercent() > 55)
-		slowedMovement 	= (status.getPercent() > 40)
+		slowedMovement 	= (status.getPercent() > 80)
+		noRunning 		= (status.getPercent() > 65)
+		noStamina 		= (status.getPercent() > 45)
 
 		status.add(Config.tickSleep)
 	end)
