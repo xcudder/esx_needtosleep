@@ -64,6 +64,8 @@ function goToSleep(source, args)
 
 		TriggerEvent("esx_status:remove", 'sleepiness', (Config.sleepRecoveryOnTick * sleepMultiplier * restQuality))
 		TriggerEvent("esx_status:remove", 'stress', (Config.stressRecoveryOnTick * sleepMultiplier * restQuality))
+		TriggerEvent("esx_status:add", 'hunger', (Config.hungerRecoveryOnTick * restQuality))
+		TriggerEvent("esx_status:add", 'thirst', (Config.thirstRecoveryOnTick * restQuality))
 
 		sleeping = (wait_time > 0)
 

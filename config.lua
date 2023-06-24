@@ -40,3 +40,5 @@ Config.Items = {
 Config.tickSleep = 185.18
 Config.sleepRecoveryOnTick = 555.55 + 185.18
 Config.stressRecoveryOnTick = 185.18
+Config.hungerRecoveryOnTick = 50.00
+Config.thirstRecoveryOnTick = 37.5
