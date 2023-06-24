@@ -8,12 +8,12 @@ local isInPaletoComune = false
 
 -- Hooks and callbacks
 RegisterNetEvent('esx_needtosleep:enteredProperty')
-AddEventHandler('esx_needtosleep:enteredProperty', function(pId)
+AddEventHandler('esx_needtosleep:enteredProperty', function()
 	isInProperty = true
 end)
 
 RegisterNetEvent('esx_needtosleep:leftProperty')
-AddEventHandler('esx_needtosleep:leftProperty', function(pId)
+AddEventHandler('esx_needtosleep:leftProperty', function()
 	isInProperty = false
 end)
 

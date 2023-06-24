@@ -1,11 +1,9 @@
-RegisterNetEvent("esx_property:enter")
-AddEventHandler("esx_property:enter", function()
-	TriggerClientEvent("esx_needtosleep:enteredProperty")
+RegisterNetEvent('esx_property:enter', function(PropertyId)
+	TriggerClientEvent("esx_needtosleep:enteredProperty", source)
 end)
 
-RegisterNetEvent("esx_property:leave")
-AddEventHandler("esx_property:leave", function()
-	TriggerClientEvent("esx_needtosleep:leftProperty")
+RegisterNetEvent('esx_property:leave', function(PropertyId)
+	TriggerClientEvent("esx_needtosleep:leftProperty", source)
 end)
 
 ESX.RegisterServerCallback("esx_needtosleep:getitem", function(source, cb)
