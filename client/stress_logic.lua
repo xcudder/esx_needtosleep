@@ -62,7 +62,7 @@ end)
 AddEventHandler('gameEventTriggered', function (name, args)
 	if(name ~= 'CEventNetworkEntityDamage') then return end
 	if (args[1] == PlayerPedId() or args[2] == PlayerPedId()) then
-		TriggerEvent("esx_status:add", 'stress', 10000)
+		TriggerEvent("esx_status:add", 'stress', 20000)
 	end
 end)
 
