@@ -28,17 +28,21 @@ CreateThread(function()
 
 			if k == "junkfood" then
 				TriggerClientEvent("esx_status:add", source, "hunger", 100000)
-				TriggerClientEvent("esx_status:add", source, "sleepiness", 80000) -- detrimental add
+				TriggerClientEvent("esx_status:add", source, "sleepiness", 50000) -- detrimental add
 				TriggerClientEvent("esx_status:remove", source, "stress", 30000) -- benign remove
 				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
 			elseif k == "suggarydrink" then
 				TriggerClientEvent("esx_status:add", source, "thirst", 100000)
-				TriggerClientEvent("esx_status:add", source, "sleepiness", 80000) -- detrimental add
+				TriggerClientEvent("esx_status:add", source, "sleepiness", 50000) -- detrimental add
 				TriggerClientEvent("esx_status:remove", source, "stress", 30000) -- benign remove
 				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
 			elseif k == "coffee" then
+				TriggerClientEvent("esx_status:add", source, "stress", 40000) -- detrimental add
+				TriggerClientEvent("esx_status:remove", source, "sleepiness", 100000) -- benign remove
+				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
+			elseif k == "coffee" then
 				TriggerClientEvent("esx_status:add", source, "stress", 20000) -- detrimental add
-				TriggerClientEvent("esx_status:remove", source, "sleepiness", 50000) -- benign remove
+				TriggerClientEvent("esx_status:remove", source, "sleepiness", 120000) -- benign remove
 				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
 			elseif k == "whisky" then
 				TriggerClientEvent("esx_status:remove", source, "stress", 200000) -- benign remove
@@ -46,6 +50,7 @@ CreateThread(function()
 				TriggerClientEvent('esx_basicneeds:onUse', source, v.type, v.prop)
 			elseif k == "cigarette" then
 				TriggerClientEvent("esx_status:remove", source, "stress", 200000) -- benign remove
+				TriggerClientEvent("esx_status:remove", source, "thirst", 50000)
 				TriggerClientEvent("esx_needtosleep:cigaretteUsed", source)
 			end
 		end)

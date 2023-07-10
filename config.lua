@@ -1,6 +1,7 @@
 Config = {}
 
 Config.debug = false
+Config.CommuneDisabled = true
 
 Config.Items = {
 	["junkfood"] = {
@@ -16,6 +17,12 @@ Config.Items = {
 	},
 	
 	["coffee"] = {
+		type = "drink",
+		prop = "p_amb_coffeecup_01",
+		remove = true
+	},
+
+	["premiumcoffee"] = {
 		type = "drink",
 		prop = "p_amb_coffeecup_01",
 		remove = true
@@ -37,8 +44,8 @@ Config.Items = {
 -- This is based on a 48min GTA day (default)
 -- and 1000 tick time and 1000000 max status
 -- on esx_status
-Config.tickSleep = 185.18
-Config.sleepRecoveryOnTick = 555.55 + 185.18
+Config.tickSleep = 185.18 / 100 * 90
+Config.sleepRecoveryOnTick = 555.55 + Config.tickSleep
 Config.stressRecoveryOnTick = 185.18
 Config.hungerRecoveryOnTick = 50.00
 Config.thirstRecoveryOnTick = 37.5

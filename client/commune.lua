@@ -4,7 +4,8 @@ local iv3 = vector3(151.41, -1007.96, -99.0)
 
 -- Keep commune running
 CreateThread(function()
-	setupBlip({title="Paleto Commune", colour=1, id=492 }, ov3)
+	if Config.CommuneDisabled then return end
+	setupBlip({ title="Paleto Commune", colour=1, id=492 , v3=ov3 })
 	while true do
 		Citizen.Wait(0)
 		DrawMarker(0, ov3.x, ov3.y, ov3.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, 244, 244, 23, 100, true, true, 2, true, false, false, false)

@@ -1,5 +1,5 @@
-function setupBlip(info, v3)
-	info.blip = AddBlipForCoord(v3.x, v3.y, v3.z)
+function setupBlip(info)
+	info.blip = AddBlipForCoord(info.v3.x, info.v3.y, info.v3.z)
 	SetBlipSprite(info.blip, info.id)
 	SetBlipDisplay(info.blip, 4)
 	SetBlipScale(info.blip, 0.9)

@@ -10,6 +10,8 @@ local StoredIsPedOutInTheRain						= false
 RegisterNetEvent('esx_needtosleep:cigaretteUsed')
 AddEventHandler('esx_needtosleep:cigaretteUsed', function()
 	TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_SMOKING", 0, true)
+	Wait(5000)
+	ClearPedTasks(PlayerPedId())
 end)
 
 RegisterNetEvent('esx_status:loaded')
